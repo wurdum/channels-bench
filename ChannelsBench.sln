@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelsBench", "src\ChannelsBench.csproj", "{D99AEF22-B6FB-44CD-A133-28B9F128E3EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{A990B152-96D5-4FEF-9316-999C3D1FF32C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D99AEF22-B6FB-44CD-A133-28B9F128E3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99AEF22-B6FB-44CD-A133-28B9F128E3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99AEF22-B6FB-44CD-A133-28B9F128E3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99AEF22-B6FB-44CD-A133-28B9F128E3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
