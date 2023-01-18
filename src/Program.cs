@@ -29,6 +29,7 @@ public class BenchmarkRunner : BackgroundService
     public const string Namespace = nameof(BenchmarkRunner);
     private static readonly Meter Meter = new(Namespace);
     private static readonly Counter<long> MessagesDropped = Meter.CreateCounter<long>("messages_dropped", "total");
+    private static readonly Counter<long> MessagesProcessed = Meter.CreateCounter<long>("messages_processed", "total");
     private static readonly Histogram<long> ProcessingLatency = Meter.CreateHistogram<long>("processing_latency", "ms");
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -48,7 +49,7 @@ public class BenchmarkRunner : BackgroundService
     private static async Task RunBenchmarkAsync(CancellationToken stoppingToken)
     {
         var channels = new List<Channel<Message>>();
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 8; i++)
         {
             channels.Add(Channel.CreateBounded<Message>(
                 new(10000)
@@ -70,10 +71,10 @@ public class BenchmarkRunner : BackgroundService
             {
                 await foreach (var message in channel.Reader.ReadAllAsync(stoppingToken))
                 {
-                    ProcessingLatency.Record((long)Math.Abs((DateTime.UtcNow - message.Timestamp).TotalMilliseconds), new TagList
-                    {
-                        { "consumer", channelIndex }
-                    });
+                    var tags = new TagList { { "consumer", channelIndex } };
+
+                    ProcessingLatency.Record((long)Math.Abs((DateTime.UtcNow - message.Timestamp).TotalMilliseconds), tags);
+                    MessagesProcessed.Add(1, tags);
                 }
             }, stoppingToken));
         }
